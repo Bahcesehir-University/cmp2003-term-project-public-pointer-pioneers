@@ -1,8 +1,10 @@
 #pragma once
+
 #include <string>
 #include <vector>
 #include <unordered_map>
 #include <array>
+#include <istream>
 
 struct ZoneCount {
     std::string zone;
@@ -11,7 +13,7 @@ struct ZoneCount {
 
 struct SlotCount {
     std::string zone;
-    int hour;
+    int hour;              
     long long count;
 };
 
@@ -26,7 +28,8 @@ private:
     std::unordered_map<std::string, long long> zoneTotals_;
     std::unordered_map<std::string, std::array<long long, 24>> zoneHourTotals_;
 
-    static inline bool is_space_(unsigned char c);
+    static inline bool is_space_(unsigned char c) { return std::isspace(c) != 0; }
+
     static std::string trim_(const std::string& s);
     static bool splitCSVLine_(const std::string& line, std::vector<std::string>& out);
     static bool parseHourFromTimestamp_(const std::string& raw, int& outHour);
