@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <array>
 #include <istream>
+#include <cctype>
 
 struct ZoneCount {
     std::string zone;
@@ -28,7 +29,10 @@ private:
     std::unordered_map<std::string, long long> zoneTotals_;
     std::unordered_map<std::string, std::array<long long, 24>> zoneHourTotals_;
 
-    static inline bool is_space_(unsigned char c) { return std::isspace(c) != 0; }
+   
+    static inline bool is_space_(unsigned char c) {
+        return std::isspace(c) != 0;
+    }
 
     static std::string trim_(const std::string& s);
     static bool splitCSVLine_(const std::string& line, std::vector<std::string>& out);
